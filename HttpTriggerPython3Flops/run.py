@@ -2,7 +2,6 @@ import os
 import sys, os.path 
 import json 
 import time 
-import urllib.request
 import tarfile
 
 lcnt = 10
@@ -17,11 +16,20 @@ numpy_venv = "myvenv/Lib/site-packages"
 venv_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ),
     numpy_venv))
 
+try:
+    # 3.5+
+    import urllib.request
+    _urlretrieve = urllib.request.urlretrieve
+except ImportError:
+    # "2.7.8 (default, Jun 30 2014, 16:03:49) [MSC v.1500 32 bit (Intel)]"
+    import urllib
+    _urlretrieve = urllib.urlretrieve
+
 # Initial download if venv is not available to load
 if not os.path.isdir(venv_path):
     url = numpy_download
     filename = os.path.basename(url)
-    urllib.request.urlretrieve(url, filename)
+    _urlretrieve(url, filename)
     fabspath = os.path.join(os.path.dirname( __file__ ), filename)
     c = tarfile.open(fabspath)
     c.extractall()
