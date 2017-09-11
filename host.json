@@ -1,0 +1,8 @@
+{
+    "swagger":{"enabled":true},
+    "queues":{
+        "maxPollingInterval": 100,
+        "batchSize": 1,
+        "newBatchThreshold":10
+    }
+}
