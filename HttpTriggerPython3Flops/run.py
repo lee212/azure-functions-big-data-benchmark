@@ -37,6 +37,8 @@ if not os.path.isdir(venv_path):
 sys.path.append(venv_path)
 import numpy as np 
 
+# Copied from https://github.com/pywren/examples/blob/master/benchmark_flops/compute.py
+# Written by Eric Jonas @ ericjonas.com
 def compute_flops(loopcount, MAT_N):
     
     A = np.arange(MAT_N**2, dtype=np.float64).reshape(MAT_N, MAT_N)
