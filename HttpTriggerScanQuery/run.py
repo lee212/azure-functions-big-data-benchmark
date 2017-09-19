@@ -77,6 +77,15 @@ t_write = t_end3 - t_end2
 process = psutil.Process(os.getpid())
 mi=process.memory_info()
 
+# Note
+# process.create_time()
+# ,
+# process.memory_full_info().uss
+# or
+# psutil.virtual_memory()
+# useful to investigate system memory usage with process
+# Ref: https://pythonhosted.org/psutil/
+
 response = open(os.environ['res'], 'w')
 response.write("{0}, {1}, {2}, {3}, {4}, {5}".format(r_num, elapsed,
     mi.vms/1024.0**2, mi.rss/1024.0**2, t_write, nbytes))
