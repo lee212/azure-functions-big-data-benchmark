@@ -102,6 +102,6 @@ response = open(os.environ[oparam], 'w')
 
 t_end = time.time()
 
-response.write("{0}, {1}, {2}, {3}, {4}, {5}".format(res/1e9, mi.vms/1024.0**2,
-        mi.rss/1024.0**2, t_import - t0, t2-t2, t_end-t0))
+response.write("{0}, {1}, {2}, {3}, {4}".format(res/1e9, mi.vms/1024.0**2,
+        mi.rss/1024.0**2, t_import - t0, t_end-t0))
 response.close() 
