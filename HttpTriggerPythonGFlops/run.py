@@ -21,6 +21,7 @@ psutil_hash = 'c78295993b38e2a78930d9d074e74b6a'
 psutil_venv = "venv/psutil/Lib/site-packages"
 venv_psutil = os.path.abspath(os.path.join(cur_path, psutil_venv))
 
+t0 = time.time()
 try:
     # 3.5+
     import urllib.request
@@ -52,6 +53,8 @@ import numpy as np
 download_venv(venv_psutil, psutil_download, psutil_hash)
 sys.path.append(venv_psutil)
 import psutil
+
+t_import = time.time()
 
 process = psutil.Process(os.getpid())
 
@@ -97,6 +100,8 @@ response = open(os.environ[oparam], 'w')
 # Note that based on a few tests, vms is close to real usage on Windows, rss is
 # close to real use on Linux
 
-response.write(str(res/1e9) + "," + str(mi.vms/1024.0**2)+ "," +
-        str(mi.rss/1024.0**2))
+t_end = time.time()
+
+response.write("{0}, {1}, {2}, {3}, {4}, {5}".format(res/1e9, mi.vms/1024.0**2,
+        mi.rss/1024.0**2, t_import - t0, t2-t2, t_end-t0))
 response.close() 
