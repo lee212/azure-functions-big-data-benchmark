@@ -17,7 +17,7 @@
     {
       "type": "blob",
       "name": "inputBlob",
-      "path": "pavlo/text/5nodes/rankings/{key}",
+      "path": "pavlo/text/1node/rankings/{key}",
       "connection": "bigdata0benchmark_STORAGE",
       "direction": "in"
     },

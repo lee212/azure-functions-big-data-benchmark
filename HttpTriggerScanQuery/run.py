@@ -21,6 +21,8 @@ or
 }
 """
 
+t_start = time.time()
+
 venv_psutil = "../HttpTriggerPythonGFlops/venv/psutil/Lib/site-packages"
 
 venv_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ),
@@ -86,7 +88,10 @@ mi=process.memory_info()
 # useful to investigate system memory usage with process
 # Ref: https://pythonhosted.org/psutil/
 
+t_end4 = time.time()
+elapsed_all = t_end4 - t_start
+
 response = open(os.environ['res'], 'w')
-response.write("{0}, {1}, {2}, {3}, {4}, {5}".format(r_num, elapsed,
-    mi.vms/1024.0**2, mi.rss/1024.0**2, t_write, nbytes))
+response.write("{0}, {1}, {2}, {3}, {4}, {5}, {6}".format(elapsed, elapsed_all,
+    mi.vms/1024.0**2, mi.rss/1024.0**2, t_write, r_num, nbytes))
 response.close()

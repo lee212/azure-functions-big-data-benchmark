@@ -84,13 +84,13 @@ response = open(os.environ[oparam], 'w')
 
 # Descriptions from psutil
 
-# rss: aka “Resident Set Size”, this is the non-swapped physical memory a
-# process has used. On UNIX it matches “top“‘s RES column (see doc). On Windows
-# this is an alias for wset field and it matches “Mem Usage” column of
+# rss: aka 'Resident Set Size', this is the non-swapped physical memory a
+# process has used. On UNIX it matches 'top's RES column (see doc). On Windows
+# this is an alias for wset field and it matches 'Mem Usage' column of
 # taskmgr.exe.
-# vms: aka “Virtual Memory Size”, this is the total amount of virtual memory used
-# by the process. On UNIX it matches “top“‘s VIRT column (see doc). On Windows
-# this is an alias for pagefile field and it matches “Mem Usage” “VM Size” column
+# vms: aka 'Virtual Memory Size', this is the total amount of virtual memory used
+# by the process. On UNIX it matches top's VIRT column (see doc). On Windows
+# this is an alias for pagefile field and it matches 'Mem Usage' 'VM Size' column
 # of taskmgr.exe.
 
 # Note that based on a few tests, vms is close to real usage on Windows, rss is
