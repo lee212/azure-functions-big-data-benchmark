@@ -5,8 +5,8 @@ import time
 import tarfile
 import hashlib
 
-lcnt = 10
-msize = 2048
+lcnt = 3
+msize = 1024
 
 iparam = "req"
 oparam = "res"
@@ -42,6 +42,7 @@ def download_venv(venv_path, url, fhash):
         fabspath = os.path.join(cur_path, filename)
         c = tarfile.open(fabspath)
         c.extractall()
+        c.close()
         os.remove(fabspath)
 
 download_venv(venv_numpy, numpy_download, numpy_hash)
