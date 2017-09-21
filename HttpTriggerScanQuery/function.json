@@ -18,14 +18,14 @@
       "type": "blob",
       "name": "inputBlob",
       "path": "pavlo/text/1node/rankings/{key}",
-      "connection": "bigdata0benchmark_STORAGE",
+      "connection": "AzureWebJobsStorage",
       "direction": "in"
     },
     {
       "type": "blob",
       "name": "outputBlob",
       "path": "scan/{output}",
-      "connection": "bigdata0benchmark_STORAGE",
+      "connection": "AzureWebJobsStorage",
       "direction": "out"
     }
 
