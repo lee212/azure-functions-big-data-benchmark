@@ -33,7 +33,8 @@ import psutil
 res = []
 
 postreqdata = json.loads(open(os.environ['req']).read())
-url = postreqdata['url']
+if "url" in postreqdata:
+    url = postreqdata['url']
 x = postreqdata['x']
 
 t_start1 = time.time()
@@ -64,7 +65,7 @@ t_end = time.time()
 r_num = len(res)
 elapsed = t_end - t_start3
 
-os.remove(filename)
+#os.remove(filename)
 t_end2 = time.time()
 nbytes = 0
 with open(os.environ['outputBlob'], 'w') as outfile:
