@@ -55,7 +55,10 @@ lines = contents.split("\n")
 
 t_start3 = time.time()
 for line in lines:
-    pageURL, pageRank, avgDuration = line.split(",")
+    try:
+        pageURL, pageRank, avgDuration = line.split(",")
+    except ValueError:
+        continue
     # SELECT pageURL, pageRank FROM rankings WHERE pageRank > X
     if int(pageRank) > int(x):
         res.append([pageURL, pageRank])
