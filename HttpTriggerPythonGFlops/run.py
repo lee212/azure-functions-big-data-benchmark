@@ -11,15 +11,15 @@ msize = 1024
 iparam = "req"
 oparam = "res"
 
-cur_path = os.path.dirname( __file__ )
-numpy_download = 'https://venv.blob.core.windows.net/python27/numpy.tar.gz'
+#cur_path = os.path.dirname( __file__ )
+cur_path = "/tmp/"
+work_path = "/tmp/"
+numpy_download_url = 'https://venv.blob.core.windows.net/python27/numpy.tar.gz'
 numpy_hash = '35eff563a232fd2b7e93137f549ec2c9'
-numpy_venv = "venv/numpy/Lib/site-packages"
-venv_numpy = os.path.abspath(os.path.join(cur_path, numpy_venv))
-psutil_download = 'https://venv.blob.core.windows.net/python27/psutil.tar.gz'
+numpy_venv = "/tmp/venv/numpy/Lib/site-packages"
+psutil_download_url = 'https://venv.blob.core.windows.net/python27/psutil.tar.gz'
 psutil_hash = 'c78295993b38e2a78930d9d074e74b6a'
-psutil_venv = "venv/psutil/Lib/site-packages"
-venv_psutil = os.path.abspath(os.path.join(cur_path, psutil_venv))
+psutil_venv = "/tmp/venv/psutil/Lib/site-packages"
 
 t0 = time.time()
 try:
@@ -34,24 +34,23 @@ except ImportError:
 # Initial download if venv is not available to load
 def download_venv(venv_path, url, fhash):
     if not os.path.isdir(venv_path):
-        filename = os.path.basename(url)
-        if not os.path.isfile(filename):
-            _urlretrieve(url, filename)
-        hstr = hashlib.md5(open(filename, 'rb').read()).hexdigest()
+        filepath = work_dir + os.path.basename(url)
+        if not os.path.isfile(filepath):
+            _urlretrieve(url, filepath)
+        hstr = hashlib.md5(open(filepath, 'rb').read()).hexdigest()
         if hstr != fhash:
             print 'md5sum is incorrect'
-        fabspath = os.path.join(cur_path, filename)
-        c = tarfile.open(fabspath)
+        c = tarfile.open(filepath)
         c.extractall()
         c.close()
-        os.remove(fabspath)
+        os.remove(filepath)
 
-download_venv(venv_numpy, numpy_download, numpy_hash)
-sys.path.append(venv_numpy)
+download_venv(numpy_venv, numpy_download_url, numpy_hash)
+sys.path.append(numpy_venv)
 import numpy as np 
 
-download_venv(venv_psutil, psutil_download, psutil_hash)
-sys.path.append(venv_psutil)
+download_venv(psutil_venv, psutil_download_url, psutil_hash)
+sys.path.append(psutil_venv)
 import psutil
 
 t_import = time.time()

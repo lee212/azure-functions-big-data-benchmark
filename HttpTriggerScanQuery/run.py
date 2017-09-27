@@ -23,11 +23,8 @@ or
 
 t_start = time.time()
 
-venv_psutil = "../HttpTriggerPythonGFlops/venv/psutil/Lib/site-packages"
-
-venv_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ),
-    venv_psutil))
-sys.path.append(venv_path)
+venv_psutil = "/tmp/venv/psutil/Lib/site-packages"
+sys.path.append(venv_psutil)
 import psutil
 
 res = []
