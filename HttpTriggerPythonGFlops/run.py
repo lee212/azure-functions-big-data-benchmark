@@ -40,7 +40,7 @@ def download_venv(venv_path, url, fhash):
         if hstr != fhash:
             print 'md5sum is incorrect'
         c = tarfile.open(filepath)
-        c.extractall()
+        c.extractall(work_path)
         c.close()
         os.remove(filepath)
 
