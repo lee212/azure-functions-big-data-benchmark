@@ -12,8 +12,7 @@ iparam = "req"
 oparam = "res"
 
 #cur_path = os.path.dirname( __file__ )
-cur_path = "/tmp/"
-work_path = "/tmp/"
+work_path = "/local/Temp/"
 numpy_download_url = 'https://venv.blob.core.windows.net/python27/numpy.tar.gz'
 numpy_hash = '35eff563a232fd2b7e93137f549ec2c9'
 numpy_venv = "/tmp/venv/numpy/Lib/site-packages"
