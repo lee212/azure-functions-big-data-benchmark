@@ -34,7 +34,7 @@ except ImportError:
 # Initial download if venv is not available to load
 def download_venv(venv_path, url, fhash):
     if not os.path.isdir(venv_path):
-        filepath = work_dir + os.path.basename(url)
+        filepath = work_path + os.path.basename(url)
         if not os.path.isfile(filepath):
             _urlretrieve(url, filepath)
         hstr = hashlib.md5(open(filepath, 'rb').read()).hexdigest()
