@@ -1,9 +1,9 @@
-regions="westus westus2 northcentralus southcentralus westcentralus eastasia southeastasia northeurope westeurope japanwest japaneast brazilsouth australiaeast australiasoutheast southindia centralindia westindia canadacentral canadaeast uksouth ukwest koreacentral koreasouth"
-letter=$(echo {{d..h},{j..z},{a..z}{a..z}})
+regions="australiaeast australiasoutheast southindia centralindia westindia canadacentral canadaeast uksouth ukwest koreacentral koreasouth"
+letter=$(echo {{q..z},{a..z}{a..z}})
 cnt=0
 len=1
-s=821
-e=1999
+s=2000
+e=2999
 inc=20
 for i in $regions
 do
@@ -20,7 +20,7 @@ do
 		ss=$(expr $ss + 1)
 		if [ $ss -eq $inc ]
 		then
-			sleep 20
+			sleep 30
 			ss=0
 		fi
 		if [ $(( $j % 100 )) -eq 99 ]
