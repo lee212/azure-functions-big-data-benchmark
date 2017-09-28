@@ -1,8 +1,8 @@
-regions="australiaeast australiasoutheast southindia centralindia westindia canadacentral canadaeast uksouth ukwest koreacentral koreasouth"
-letter=$(echo {{q..z},{a..z}{a..z}})
+regions="ukwest"
+letter=$(echo {{y..z},{a..z}{a..z}})
 cnt=0
 len=1
-s=2000
+s=2891
 e=2999
 inc=20
 for i in $regions
