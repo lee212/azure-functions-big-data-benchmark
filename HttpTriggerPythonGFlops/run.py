@@ -58,10 +58,10 @@ process = psutil.Process(os.getpid())
 
 # Copied from https://github.com/pywren/examples/blob/master/benchmark_flops/compute.py
 # Written by Eric Jonas @ ericjonas.com
-def compute_flops(loopcount, MAT_N):
+def compute_flops(loopcount, MAT_N, precision):
     
-    A = np.arange(MAT_N**2, dtype=np.float64).reshape(MAT_N, MAT_N)
-    B = np.arange(MAT_N**2, dtype=np.float64).reshape(MAT_N, MAT_N)
+    A = np.arange(MAT_N**2, dtype=precision).reshape(MAT_N, MAT_N)
+    B = np.arange(MAT_N**2, dtype=precision).reshape(MAT_N, MAT_N)
     t1 = time.time()
     for i in range(loopcount):
         c = np.sum(np.dot(A, B))
@@ -81,7 +81,14 @@ if 'number_of_loop' in postreqdata:
 if 'number_of_matrix' in postreqdata:
     msize = postreqdata['number_of_matrix'] 
 
-res, mi = compute_flops(lcnt, msize) 
+# Default: double precision
+precision = np.float64
+
+if 'single_or_double' in postreqdata:a
+    if int(postreqdata['single_or_double']) == 32:
+        precision = np.float32
+
+res, mi = compute_flops(lcnt, msize, precision) 
 response = open(os.environ[oparam], 'w')
 
 # Descriptions from psutil
