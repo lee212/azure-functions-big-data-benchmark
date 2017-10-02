@@ -84,7 +84,7 @@ if 'number_of_matrix' in postreqdata:
 # Default: double precision
 precision = np.float64
 
-if 'single_or_double' in postreqdata:a
+if 'single_or_double' in postreqdata:
     if int(postreqdata['single_or_double']) == 32:
         precision = np.float32
 
