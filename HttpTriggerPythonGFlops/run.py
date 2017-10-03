@@ -68,7 +68,7 @@ def compute_flops(loopcount, MAT_N, precision):
     FLOPS = 2 * MAT_N**3 * loopcount
     t2 = time.time()
     mi=process.memory_info()
-    return (FLOPS / (t2-t1), mi)
+    return (FLOPS / max(1,t2-t1), mi)
 
 try:
     postreqdata = json.loads(open(os.environ[iparam]).read()) 
