@@ -10,6 +10,7 @@ import sys, os.path
 import urllib
 _urlretrieve = urllib.urlretrieve
 
+invocationId = os.environ['EXECUTION_CONTEXT_INVOCATIONID']
 postreqdata = json.loads(open(os.environ['req']).read())
 accountname=postreqdata['accountname']
 accountkey=postreqdata['accountkey']
@@ -19,7 +20,7 @@ blob_name = postreqdata["fname"]
 work_path = "/local/Temp/"
 asb_download_url = postreqdata['virtualenv_download_url']
 asb_download_name = postreqdata['virtualenv_download_name']
-asb_venv = work_path + "/Lib/site-packages".format(asb_download_name)
+asb_venv = work_path + "{}/Lib/site-packages".format(asb_download_name)
 
 # Initial download if venv is not available to load
 def download_venv(venv_path, url, fhash=None):
@@ -66,9 +67,13 @@ t_end = time.time()
 r_num = len(res)
 elapsed = t_end - t_start
 
+params = postreqdata 
+del(params['accountname'])
+del(params['accountkey'])
 response = open(os.environ['res'], 'w')
 result = {"result":{"cnt": r_num, "elapsed":elapsed, "s3_elapsed": s3d_end - s3d_start, "venv_elapsed": venv_end - venv_start},
-            "params": postreqdata }
+            "params": params,
+            "invocationId": invocationId}
 
 #msg = ("{0}, {1}".format(r_num, elapsed))
 print (result)
